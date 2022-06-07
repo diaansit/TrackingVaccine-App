@@ -1,0 +1,109 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tracking Vaksin - Login Form</title>
+    <link href="~/Content/Login-page/css/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.4/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <img class="wave" src="~/Content/Login-page/img/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="~/Content/Login-page/img/bg.svg">
+        </div>
+        <div class="login-content">
+            <form method="post" action="~/Auth/User/Login">
+                <img src="~/Content/Login-page/img/avatar.svg">
+                <h2 class="title">Welcome</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Username</h5>
+                        <input type="text" name="username" class="input">
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password</h5>
+                        <input type="password" name="password" class="input">
+                    </div>
+                </div>
+                <a href="~/Auth/User/Register">Not Registered?</a>
+                <input type="submit" class="btn" value="Login">
+            </form>
+        </div>
+    </div>
+
+    <script src="~/Content/Login-page/js/main.js"></script>
+
+    @if (Session["SuccessRegis"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil Registrasi!',
+                text: 'Kuy Login sob ;)',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        </script>
+        Session.Remove("SuccessRegis");
+    }
+    else
+    {
+        if (Session["username"] == null)
+        {
+            <script>
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Belum Login!',
+                    text: 'Kuy Login sob ;)',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            </script>
+        }
+    }
+
+    @if (Session["Error"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal login!',
+                text: 'Email atau Password Salah',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        </script>
+        Session.Remove("Error");
+    }
+
+    @if (Session["isLogout"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'info',
+                title: 'Berhasil Logout!',
+                text: 'Yahh...Anda telah pergi :(',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        </script>
+        Session.Remove("isLogout");
+    }
+</body>
+</html>

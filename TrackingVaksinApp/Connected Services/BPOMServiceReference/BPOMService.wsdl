@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BPOMService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:56269/BPOMService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:56269/BPOMService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:56269/BPOMService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TrackingVaksinService" />
+      <xsd:import schemaLocation="http://localhost:56269/BPOMService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TrackingVaksinService.Helper" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IEBPOMService_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetAkun_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAkun" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetAkun_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAkunResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetBPOM_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBPOM" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetBPOM_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBPOMResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetVaksinDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVaksinDetails" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetVaksinDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVaksinDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_Up_InputMessage">
+    <wsdl:part name="parameters" element="tns:Up" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_Up_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusenVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusenVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusenVaksinDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenVaksinDetails" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusenVaksinDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenVaksinDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusenVaksinByNoReg_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenVaksinByNoReg" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusenVaksinByNoReg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenVaksinByNoRegResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusen_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusen" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetListProdusen_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListProdusen" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetListProdusen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListProdusenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahProdusen_InputMessage">
+    <wsdl:part name="parameters" element="tns:TambahProdusen" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahProdusen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TambahProdusenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusenById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenById" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetProdusenById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdusenByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahProdusenVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TambahProdusenVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahProdusenVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TambahProdusenVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateProdusenVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProdusenVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateProdusenVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProdusenVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteProdusenVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProdusenVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteProdusenVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProdusenVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteListProdusenVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteListProdusenVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteListProdusenVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteListProdusenVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahRS_InputMessage">
+    <wsdl:part name="parameters" element="tns:TambahRS" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahRS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TambahRSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetRS_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRS" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetRS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetVaksinRS_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVaksinRS" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetVaksinRS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVaksinRSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetVaksinRSDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVaksinRSDetails" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetVaksinRSDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVaksinRSDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahRSVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TambahRSVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahRSVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TambahRSVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahListRSVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TambahListRSVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahListRSVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TambahListRSVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateRSVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRSVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateRSVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRSVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateListRSVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateListRSVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateListRSVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateListRSVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteRSVaksin_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRSVaksin" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteRSVaksin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRSVaksinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetListRumahSakit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListRumahSakit" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetListRumahSakit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListRumahSakitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetDetailRumahSakit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailRumahSakit" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetDetailRumahSakit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailRumahSakitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetLogArrivalVaccine_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogArrivalVaccine" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetLogArrivalVaccine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogArrivalVaccineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetLogArrivalVaccineDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogArrivalVaccineDetails" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetLogArrivalVaccineDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogArrivalVaccineDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_ReportArrivalVaccine_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportArrivalVaccine" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_ReportArrivalVaccine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportArrivalVaccineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_ReportListArrivalVaccine_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportListArrivalVaccine" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_ReportListArrivalVaccine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportListArrivalVaccineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetLogVaccineUse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogVaccineUse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetLogVaccineUse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogVaccineUseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetLogVaccineUseDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogVaccineUseDetails" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetLogVaccineUseDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogVaccineUseDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_ReportVaccineUse_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportVaccineUse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_ReportVaccineUse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportVaccineUseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_ReportListVaccineUse_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportListVaccineUse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_ReportListVaccineUse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportListVaccineUseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateListVaccineUse_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateListVaccineUse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateListVaccineUse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateListVaccineUseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetMasyarakat_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMasyarakat" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetMasyarakat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMasyarakatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetMasyarakatByNik_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMasyarakatByNik" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetMasyarakatByNik_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMasyarakatByNikResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetListMasyarakat_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListMasyarakat" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetListMasyarakat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListMasyarakatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahMasyarakat_InputMessage">
+    <wsdl:part name="parameters" element="tns:TambahMasyarakat" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahMasyarakat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TambahMasyarakatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateMasyarakat_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMasyarakat" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_UpdateMasyarakat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMasyarakatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteMasyarakat_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMasyarakat" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeleteMasyarakat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMasyarakatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetListPasien_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListPasien" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetListPasien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListPasienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetPasienByNoRek_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPasienByNoRek" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_GetPasienByNoRek_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPasienByNoRekResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahPasien_InputMessage">
+    <wsdl:part name="parameters" element="tns:TambahPasien" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_TambahPasien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TambahPasienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_EditPasien_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditPasien" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_EditPasien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditPasienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_EditListPasien_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditListPasien" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_EditListPasien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditListPasienResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeletePasien_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePasien" />
+  </wsdl:message>
+  <wsdl:message name="IEBPOMService_DeletePasien_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePasienResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IEBPOMService">
+    <wsdl:operation name="Register">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/Register" message="tns:IEBPOMService_Register_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/RegisterResponse" message="tns:IEBPOMService_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/Login" message="tns:IEBPOMService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/LoginResponse" message="tns:IEBPOMService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAkun">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetAkun" message="tns:IEBPOMService_GetAkun_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetAkunResponse" message="tns:IEBPOMService_GetAkun_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBPOM">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetBPOM" message="tns:IEBPOMService_GetBPOM_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetBPOMResponse" message="tns:IEBPOMService_GetBPOM_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetVaksin" message="tns:IEBPOMService_GetVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetVaksinResponse" message="tns:IEBPOMService_GetVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVaksinDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetVaksinDetails" message="tns:IEBPOMService_GetVaksinDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetVaksinDetailsResponse" message="tns:IEBPOMService_GetVaksinDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Up">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/Up" message="tns:IEBPOMService_Up_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/UpResponse" message="tns:IEBPOMService_Up_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/UpdateVaksin" message="tns:IEBPOMService_UpdateVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/UpdateVaksinResponse" message="tns:IEBPOMService_UpdateVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/DeleteVaksin" message="tns:IEBPOMService_DeleteVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/DeleteVaksinResponse" message="tns:IEBPOMService_DeleteVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusenVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenVaksin" message="tns:IEBPOMService_GetProdusenVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenVaksinResponse" message="tns:IEBPOMService_GetProdusenVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusenVaksinDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenVaksinDetails" message="tns:IEBPOMService_GetProdusenVaksinDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenVaksinDetailsResponse" message="tns:IEBPOMService_GetProdusenVaksinDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusenVaksinByNoReg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenVaksinByNoReg" message="tns:IEBPOMService_GetProdusenVaksinByNoReg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenVaksinByNoRegResponse" message="tns:IEBPOMService_GetProdusenVaksinByNoReg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusen">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusen" message="tns:IEBPOMService_GetProdusen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenResponse" message="tns:IEBPOMService_GetProdusen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListProdusen">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetListProdusen" message="tns:IEBPOMService_GetListProdusen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetListProdusenResponse" message="tns:IEBPOMService_GetListProdusen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TambahProdusen">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/TambahProdusen" message="tns:IEBPOMService_TambahProdusen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/TambahProdusenResponse" message="tns:IEBPOMService_TambahProdusen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusenById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenById" message="tns:IEBPOMService_GetProdusenById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetProdusenByIdResponse" message="tns:IEBPOMService_GetProdusenById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TambahProdusenVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/TambahProdusenVaksin" message="tns:IEBPOMService_TambahProdusenVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/TambahProdusenVaksinResponse" message="tns:IEBPOMService_TambahProdusenVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProdusenVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/UpdateProdusenVaksin" message="tns:IEBPOMService_UpdateProdusenVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/UpdateProdusenVaksinResponse" message="tns:IEBPOMService_UpdateProdusenVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProdusenVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/DeleteProdusenVaksin" message="tns:IEBPOMService_DeleteProdusenVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/DeleteProdusenVaksinResponse" message="tns:IEBPOMService_DeleteProdusenVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteListProdusenVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/DeleteListProdusenVaksin" message="tns:IEBPOMService_DeleteListProdusenVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/DeleteListProdusenVaksinResponse" message="tns:IEBPOMService_DeleteListProdusenVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TambahRS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/TambahRS" message="tns:IEBPOMService_TambahRS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/TambahRSResponse" message="tns:IEBPOMService_TambahRS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetRS" message="tns:IEBPOMService_GetRS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetRSResponse" message="tns:IEBPOMService_GetRS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVaksinRS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetVaksinRS" message="tns:IEBPOMService_GetVaksinRS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetVaksinRSResponse" message="tns:IEBPOMService_GetVaksinRS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVaksinRSDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetVaksinRSDetails" message="tns:IEBPOMService_GetVaksinRSDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetVaksinRSDetailsResponse" message="tns:IEBPOMService_GetVaksinRSDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TambahRSVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/TambahRSVaksin" message="tns:IEBPOMService_TambahRSVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/TambahRSVaksinResponse" message="tns:IEBPOMService_TambahRSVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TambahListRSVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/TambahListRSVaksin" message="tns:IEBPOMService_TambahListRSVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/TambahListRSVaksinResponse" message="tns:IEBPOMService_TambahListRSVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRSVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/UpdateRSVaksin" message="tns:IEBPOMService_UpdateRSVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/UpdateRSVaksinResponse" message="tns:IEBPOMService_UpdateRSVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateListRSVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/UpdateListRSVaksin" message="tns:IEBPOMService_UpdateListRSVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/UpdateListRSVaksinResponse" message="tns:IEBPOMService_UpdateListRSVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRSVaksin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/DeleteRSVaksin" message="tns:IEBPOMService_DeleteRSVaksin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/DeleteRSVaksinResponse" message="tns:IEBPOMService_DeleteRSVaksin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListRumahSakit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetListRumahSakit" message="tns:IEBPOMService_GetListRumahSakit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetListRumahSakitResponse" message="tns:IEBPOMService_GetListRumahSakit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailRumahSakit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetDetailRumahSakit" message="tns:IEBPOMService_GetDetailRumahSakit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetDetailRumahSakitResponse" message="tns:IEBPOMService_GetDetailRumahSakit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogArrivalVaccine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetLogArrivalVaccine" message="tns:IEBPOMService_GetLogArrivalVaccine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetLogArrivalVaccineResponse" message="tns:IEBPOMService_GetLogArrivalVaccine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogArrivalVaccineDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetLogArrivalVaccineDetails" message="tns:IEBPOMService_GetLogArrivalVaccineDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetLogArrivalVaccineDetailsResponse" message="tns:IEBPOMService_GetLogArrivalVaccineDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportArrivalVaccine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/ReportArrivalVaccine" message="tns:IEBPOMService_ReportArrivalVaccine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/ReportArrivalVaccineResponse" message="tns:IEBPOMService_ReportArrivalVaccine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportListArrivalVaccine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/ReportListArrivalVaccine" message="tns:IEBPOMService_ReportListArrivalVaccine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/ReportListArrivalVaccineResponse" message="tns:IEBPOMService_ReportListArrivalVaccine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogVaccineUse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetLogVaccineUse" message="tns:IEBPOMService_GetLogVaccineUse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetLogVaccineUseResponse" message="tns:IEBPOMService_GetLogVaccineUse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogVaccineUseDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetLogVaccineUseDetails" message="tns:IEBPOMService_GetLogVaccineUseDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetLogVaccineUseDetailsResponse" message="tns:IEBPOMService_GetLogVaccineUseDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportVaccineUse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/ReportVaccineUse" message="tns:IEBPOMService_ReportVaccineUse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/ReportVaccineUseResponse" message="tns:IEBPOMService_ReportVaccineUse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportListVaccineUse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/ReportListVaccineUse" message="tns:IEBPOMService_ReportListVaccineUse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/ReportListVaccineUseResponse" message="tns:IEBPOMService_ReportListVaccineUse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateListVaccineUse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/UpdateListVaccineUse" message="tns:IEBPOMService_UpdateListVaccineUse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/UpdateListVaccineUseResponse" message="tns:IEBPOMService_UpdateListVaccineUse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMasyarakat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetMasyarakat" message="tns:IEBPOMService_GetMasyarakat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetMasyarakatResponse" message="tns:IEBPOMService_GetMasyarakat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMasyarakatByNik">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetMasyarakatByNik" message="tns:IEBPOMService_GetMasyarakatByNik_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetMasyarakatByNikResponse" message="tns:IEBPOMService_GetMasyarakatByNik_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListMasyarakat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetListMasyarakat" message="tns:IEBPOMService_GetListMasyarakat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetListMasyarakatResponse" message="tns:IEBPOMService_GetListMasyarakat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TambahMasyarakat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/TambahMasyarakat" message="tns:IEBPOMService_TambahMasyarakat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/TambahMasyarakatResponse" message="tns:IEBPOMService_TambahMasyarakat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMasyarakat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/UpdateMasyarakat" message="tns:IEBPOMService_UpdateMasyarakat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/UpdateMasyarakatResponse" message="tns:IEBPOMService_UpdateMasyarakat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMasyarakat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/DeleteMasyarakat" message="tns:IEBPOMService_DeleteMasyarakat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/DeleteMasyarakatResponse" message="tns:IEBPOMService_DeleteMasyarakat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListPasien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetListPasien" message="tns:IEBPOMService_GetListPasien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetListPasienResponse" message="tns:IEBPOMService_GetListPasien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPasienByNoRek">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/GetPasienByNoRek" message="tns:IEBPOMService_GetPasienByNoRek_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/GetPasienByNoRekResponse" message="tns:IEBPOMService_GetPasienByNoRek_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TambahPasien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/TambahPasien" message="tns:IEBPOMService_TambahPasien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/TambahPasienResponse" message="tns:IEBPOMService_TambahPasien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditPasien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/EditPasien" message="tns:IEBPOMService_EditPasien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/EditPasienResponse" message="tns:IEBPOMService_EditPasien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditListPasien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/EditListPasien" message="tns:IEBPOMService_EditListPasien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/EditListPasienResponse" message="tns:IEBPOMService_EditListPasien_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePasien">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEBPOMService/DeletePasien" message="tns:IEBPOMService_DeletePasien_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEBPOMService/DeletePasienResponse" message="tns:IEBPOMService_DeletePasien_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IEBPOMService" type="tns:IEBPOMService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Register">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAkun">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetAkun" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBPOM">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetBPOM" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVaksinDetails">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetVaksinDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Up">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/Up" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/UpdateVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/DeleteVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusenVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetProdusenVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusenVaksinDetails">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetProdusenVaksinDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusenVaksinByNoReg">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetProdusenVaksinByNoReg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusen">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetProdusen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListProdusen">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetListProdusen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TambahProdusen">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/TambahProdusen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProdusenById">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetProdusenById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TambahProdusenVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/TambahProdusenVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProdusenVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/UpdateProdusenVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProdusenVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/DeleteProdusenVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteListProdusenVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/DeleteListProdusenVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TambahRS">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/TambahRS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRS">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetRS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVaksinRS">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetVaksinRS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVaksinRSDetails">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetVaksinRSDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TambahRSVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/TambahRSVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TambahListRSVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/TambahListRSVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRSVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/UpdateRSVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateListRSVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/UpdateListRSVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRSVaksin">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/DeleteRSVaksin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListRumahSakit">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetListRumahSakit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailRumahSakit">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetDetailRumahSakit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogArrivalVaccine">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetLogArrivalVaccine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogArrivalVaccineDetails">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetLogArrivalVaccineDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportArrivalVaccine">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/ReportArrivalVaccine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportListArrivalVaccine">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/ReportListArrivalVaccine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogVaccineUse">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetLogVaccineUse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogVaccineUseDetails">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetLogVaccineUseDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportVaccineUse">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/ReportVaccineUse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportListVaccineUse">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/ReportListVaccineUse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateListVaccineUse">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/UpdateListVaccineUse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMasyarakat">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetMasyarakat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMasyarakatByNik">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetMasyarakatByNik" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListMasyarakat">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetListMasyarakat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TambahMasyarakat">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/TambahMasyarakat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMasyarakat">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/UpdateMasyarakat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMasyarakat">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/DeleteMasyarakat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListPasien">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetListPasien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasienByNoRek">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/GetPasienByNoRek" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TambahPasien">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/TambahPasien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditPasien">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/EditPasien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditListPasien">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/EditListPasien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePasien">
+      <soap:operation soapAction="http://tempuri.org/IEBPOMService/DeletePasien" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BPOMService">
+    <wsdl:port name="BasicHttpBinding_IEBPOMService" binding="tns:BasicHttpBinding_IEBPOMService">
+      <soap:address location="http://localhost:56269/BPOMService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,48 @@
+﻿@model TrackingVaksinApp.Models.ListViewModel
+
+@{
+    ViewBag.Title = "CekVaksin";
+    Layout = "~/Views/Shared/_RumahSakitLayout.cshtml";
+}
+
+<div class="pt-2 mr-2">
+        <form class="form-inline" method="POST">
+            <div class="form-group mx-sm-4 mb-2">
+                <label for="no_registrasi" class="sr-only">No Registrasi</label>
+                <input type="text" name="no_registrasi" class="form-control" id="no_registrasi" placeholder="No Registrasi">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2 ml-3">Check</button>
+        </form>
+ </div>
+
+
+<div class="mt-md-4">
+    <h4 class="mb-3">Data BPOM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+    @if (Model.singlevaksin != null)
+    {
+        if (Model.singlevaksin.status.Equals("Invalid"))
+        {
+            <div class="alert alert-warning">Vaksin dengan No Registrasi : @Model.singlevaksin.no_registrasi Tidak Valid</div>
+        }
+        else
+        {
+            <div class="card" style="width: 25rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> <label for="@Model.singlevaksin.no_registrasi">No Registrasi : </label> @Model.singlevaksin.no_registrasi</li>
+                    <li class="list-group-item"><label for="@Model.singlevaksin.id_produsen">Nama Produsen : </label> @Model.produsens.FirstOrDefault(X => X.id == Model.singlevaksin.id_produsen).Nama</li>
+                    <li class="list-group-item"><label for="@Model.singlevaksin.status">Status : </label> <span class="badge badge-success"> @Model.singlevaksin.status </span> </li>
+                </ul>
+            </div>
+        }
+     }
+     else
+     {
+        <div class="alert alert-info">Vaksin Tidak Tersedia</div>
+    }
+</div>
+<p>
+    @Html.RouteLink("Back to Home", "RS", new { action = "Index" }, new { @class = "btn btn-sm btn-primary" })
+</p>

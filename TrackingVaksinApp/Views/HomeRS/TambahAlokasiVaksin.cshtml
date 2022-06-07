@@ -1,0 +1,68 @@
+﻿@model TrackingVaksinApp.Models.ListViewModel
+@{
+    ViewBag.Title = "TambahAlokasiVaksin";
+    Layout = "~/Views/Shared/_RumahSakitLayout.cshtml";
+}
+
+
+<section class="content">
+    <div class="row">
+        <div class="container-fluid">
+            <!-- left column -->
+            <div class="col-md-10">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Form Alokasi Penggunaan Vaksin</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" id="quickForm">
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" name="No_RekMedis" required autofocus autocomplete="ON" class="form-control" placeholder="No Rekam Medis">
+                                <p class="text-danger">@ViewBag.EmptyNoReg</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="RUmahSakit">Pilih Pasien : </label>
+                                <select id="NIK" class="form-control select2" required name="NIK">
+                                    <option value="0">Pilih NIK</option>
+                                    @foreach (var item in Model.masyarakts)
+                                    {
+                                        <option value="@item.NIK">@item.Nama</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="RUmahSakit">Alokasi Vaksin : </label>
+                                <select id="no_registrasi" class="form-control select2" required name="no_registrasi">
+                                    <option value="0">Pilih Vaksin</option>
+                                    @foreach (var item in Model.rsVaksins.Where(X=>X.isReported==1))
+                                    {
+                                        <option value="@item.no_registrasi">@item.no_registrasi</option>
+                                    }
+                                </select>
+                                <p class="text-danger">@ViewBag.idRS</p>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div>
+    </section>

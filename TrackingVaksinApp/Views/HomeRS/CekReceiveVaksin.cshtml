@@ -1,0 +1,100 @@
+﻿@model IEnumerable<TrackingVaksinApp.BPOMServiceReference.RS_Vaksin>
+
+@{
+    ViewBag.Title = "CekRecieveVaksin";
+    Layout = "~/Views/Shared/_RumahSakitLayout.cshtml";
+}
+
+<h2>CekRecieveVaksin</h2>
+<div id="error-msg">Error = @ViewBag.Err</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.create_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_produsen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_rumahSakit)
+        </th>
+        <th>
+            Status Lapor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kode_ref)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.no_registrasi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Where(X => X.isReported == 0))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.create_at)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_produsen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_rumahSakit)
+            </td>
+            <td>
+                <span class="badge badge-warning">Belum di Lapor</span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kode_ref)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.no_registrasi)
+            </td>
+            <td>
+                <a href="~/RS/HomeRS/ReportArrivalVaccine/@Html.DisplayFor(modelItem => item.no_registrasi)" title="Lapor Vaksin" class="btn btn-success btn-sm"><i class="fas fa-bullhorn"></i></a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.RouteLink("Lapor Semua", "RS", new { action = "ReportAllArrivalVaccine" }, new { @class = "btn btn-sm btn-primary", @style = "float:left;" })
+    <button type="button" class="btn btn-sm btn-primary ml-4" data-toggle="modal" data-target="#exampleModal">
+        Lapor Berdasarkan Kode Ref
+    </button>
+</p>
+
+
+
+@* Modal For Report By Kode ref*@
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Form Laporan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="pt-2 mr-2">
+                        <form class="form-inline" action="~/RS/HomeRS/ReportByKodeReff" method="POST">
+                            <div class="form-group mx-sm-4 mb-2">
+                                <label for="kode_ref" class="sr-only">Kode Refrensi</label>
+                                <input type="text" name="kode_ref" class="form-control" id="kode_ref" placeholder="Kode Refrensi">
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-2 ml-3">Lapor</button>
+                        </form>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

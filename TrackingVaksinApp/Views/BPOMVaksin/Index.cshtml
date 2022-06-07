@@ -1,0 +1,142 @@
+﻿@model TrackingVaksinApp.Models.ListViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<h2>Index</h2>
+
+<h4 class="alert alert-info">Vaksin (@Model.bpom_vaksins.Count()) Data</h4>
+<table id="example" class="table table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Create At
+            </th>
+            <th>
+                No Registrasi
+            </th>
+            <th>
+                Nama Produsen
+            </th>
+            <th>
+                Status
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.bpom_vaksins)
+        {
+            string clTr;
+            if (item.status.Equals("Invalid"))
+            {
+                clTr = "table-danger";
+            }
+            else
+            {
+                clTr = "";
+            }
+            <tr class="@clTr">
+                <td>
+                    @Html.DisplayFor(modelItem => item.create_at)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.no_registrasi)
+                </td>
+                <td>
+                    @Model.produsens.FirstOrDefault(X => X.id == item.id_produsen).Nama.ToString()
+                </td>
+                <td>
+                    @if (item.status.Equals("Valid"))
+                    {
+                        <span class="badge badge-success">@item.status</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">@item.status</span>
+                    }
+                </td>
+                <td )>
+                    @using (Html.BeginForm("index", "BPOMVaksin"))
+                    {
+                        <input type="hidden" name="no_registrasi" value="@Html.DisplayFor(modelItem => item.no_registrasi)" />
+                        <input type="hidden" name="create_at" value="@Html.DisplayFor(modelItem => item.create_at)" />
+                        if (item.status.Equals("Invalid"))
+                        {
+                            <button title="Lihat Detail" type="button" class="btn btn-sm btn-primary ml-4" data-toggle="modal" data-target="#exampleModal-@item.no_registrasi">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button type="submit" name="status" onclick="return confirm('Are you Sure to Validate?')" value="Valid" title="Validasi Vaksin" class="btn btn-danger btn-sm"> <i class="fas fa-power-off"></i></button>
+                        }
+                        else
+                        {
+                            <button title="Lihat Detail" type="button" class="btn btn-sm btn-primary ml-4" data-toggle="modal" data-target="#exampleModal-@item.no_registrasi">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button type="submit" name="status" onclick="return confirm('Are you Sure to Devalidate?')" value="Invalid" title="DeValidasi Vaksin" class="btn btn-success btn-sm"><i class="fas fa-power-off"></i></button>
+                        }
+
+                    }
+                </td>
+            </tr>
+
+
+            <div class="modal fade" id="exampleModal-@item.no_registrasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detail Vaksin</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="pt-2 mr-2">
+                                <div class="card ml-4" style="width: 25rem;">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"> <label for="@item.create_at">Dibuat Pada : </label> @item.create_at</li>
+                                        <li class="list-group-item"> <label for="@item.no_registrasi">No Registrasi : </label> @item.no_registrasi</li>
+                                        <li class="list-group-item"><label for="@item.id_produsen">Nama Produsen : </label> @Model.produsens.FirstOrDefault(X => X.id == item.id_produsen).Nama.ToString()</li>
+                                        <li class="list-group-item"><label for="@item.id_produsen">Kemasan : </label> @item.kemasan</li>
+                                        <li class="list-group-item"><label for="@item.id_produsen">Jumlah : </label> @item.jumlah</li>
+                                        @if (item.status.Equals("Invalid"))
+                                        {
+                                            <li class="list-group-item"><label for="@item.status">Status : </label> <span class="badge badge-danger"> @item.status </span> </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="list-group-item"><label for="@item.status">Status : </label> <span class="badge badge-success"> @item.status </span> </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        </tbody>
+
+</table>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>

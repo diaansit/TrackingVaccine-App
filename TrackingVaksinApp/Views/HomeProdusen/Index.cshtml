@@ -1,0 +1,222 @@
+﻿@model IEnumerable<TrackingVaksinApp.BPOMServiceReference.Produsen_Vaksin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ProdusenLayout.cshtml";
+    int check = 0;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm" })
+</p>
+
+<div class="card">
+    <div class="card-tools">
+        <ul class="nav nav-pills ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Belum di Lapor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#sales-chart" data-toggle="tab">Sudah di Lapor</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card-body">
+        <div class="tab-content p-0">
+            <div class="chart tab-pane active" id="revenue-chart">
+                <h4 class="alert alert-info">Vaksin (@Model.Count(X => X.status.Equals("Not Reported"))) Data</h4>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.create_at)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.no_registrasi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status)
+                        </th>
+                        <th>Tindakan</th>
+                    </tr>
+
+                    @foreach (var item in Model.Where(X => X.status.Equals("Not Reported")))
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.create_at)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.no_registrasi)
+                            </td>
+                            <td>
+                                <span class="badge badge-danger" style="width:100px;"> @Html.DisplayFor(modelItem => item.status)</span>
+                            </td>
+                            <td>
+                                <button title="Lihat Detail" type="button" class="btn btn-sm btn-primary ml-4" data-toggle="modal" data-target="#exampleModal-@item.no_registrasi">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <a href="~/Produsen/HomeProdusen/LaporVaksin/@Html.DisplayFor(modelItem => item.no_registrasi)" title="Lapor Vaksin" class="btn btn-success btn-sm"><i class="fas fa-bullhorn"></i></a>
+                            </td>
+                        </tr>
+
+                        //Modal Detail
+
+                        <div class="modal fade" id="exampleModal-@item.no_registrasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Detail Vaksin</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="pt-2 mr-2">
+                                            <div class="card ml-4" style="width: 25rem;">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"> <label for="@item.create_at">Dibuat Pada : </label> @item.create_at</li>
+                                                    <li class="list-group-item"> <label for="@item.no_registrasi">No Registrasi : </label> @item.no_registrasi</li>
+                                                    <li class="list-group-item"><label for="@item.id_produsen">Nama Produsen : </label> @Session["Name"]</li>
+                                                    <li class="list-group-item"><label for="@item.id_produsen">Kemasan : </label> @item.kemasan</li>
+                                                    <li class="list-group-item"><label for="@item.id_produsen">Jumlah : </label> @item.jumlah</li>
+                                                    <li class="list-group-item"><label for="@item.status">Status : </label> <span class="badge badge-warning"> @item.status </span> </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </table>
+            </div>
+
+            <div class="chart tab-pane" id="sales-chart">
+                <h4 class="alert alert-info">Vaksin (@Model.Count(X => X.status.Equals("Valid") || X.status.Equals("Invalid") || X.status.Equals("Was Distributed"))) Data</h4>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.create_at)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.no_registrasi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status)
+                        </th>
+                        <th>Tindakan</th>
+                    </tr>
+
+
+                    @foreach (var item in Model.Where(X => X.status.Equals("Valid") || X.status.Equals("Invalid") || X.status.Equals("Was Distributed")))
+                    {
+                        if (item.status.Equals("Was Reported"))
+                        {
+                            <tr class="table-secondary">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.create_at)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.no_registrasi)
+                                </td>
+                                <td>
+                                    @if (item.status.Equals("Valid"))
+                                    {
+                                        <span class="badge badge-success" style="width:100px;"> @Html.DisplayFor(modelItem => item.status)</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-warning" style="width:100px;"> @Html.DisplayFor(modelItem => item.status)</span>
+                                    }
+                                </td>
+                                <td>
+                                    <button title="Lihat Detail" type="button" class="btn btn-sm btn-primary ml-4" data-toggle="modal" data-target="#exampleModal-@item.no_registrasi">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.create_at)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.no_registrasi)
+                                </td>
+                                <td>
+                                    @if (item.status.Equals("Valid"))
+                                    {
+                                        <span class="badge badge-success" style="width:100px;"> @Html.DisplayFor(modelItem => item.status)</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-warning" style="width:100px;"> @Html.DisplayFor(modelItem => item.status)</span>
+                                    }
+                                </td>
+                                <td>
+                                    <button title="Lihat Detail" type="button" class="btn btn-sm btn-primary ml-4" data-toggle="modal" data-target="#exampleModal-@item.no_registrasi">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+
+                        <div class="modal fade" id="exampleModal-@item.no_registrasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Detail Vaksin</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="pt-2 mr-2">
+                                            <div class="card ml-4" style="width: 25rem;">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"> <label for="@item.create_at">Dibuat Pada : </label> @item.create_at</li>
+                                                    <li class="list-group-item"> <label for="@item.no_registrasi">No Registrasi : </label> @item.no_registrasi</li>
+                                                    <li class="list-group-item"><label for="@item.id_produsen">Nama Produsen : </label> @Session["Name"]</li>
+                                                    <li class="list-group-item"><label for="@item.id_produsen">Kemasan : </label> @item.kemasan</li>
+                                                    <li class="list-group-item"><label for="@item.id_produsen">Jumlah : </label> @item.jumlah</li>
+                                                    <li class="list-group-item"><label for="@item.status">Status : </label> <span class="badge badge-warning"> @item.status </span> </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Session["username"] != null && Session["onNotif"] == null)
+{
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Kamu berhasil Masuk!',
+        text: 'Silahkan Bereskplorasi!',
+        showConfirmButton: false,
+        timer: 2500
+    })
+    </script>
+        Session["onNotif"] = "True";
+}

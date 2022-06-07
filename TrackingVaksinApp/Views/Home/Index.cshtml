@@ -1,0 +1,379 @@
+﻿@model TrackingVaksinApp.Models.ListViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="~/Content/plugins/jquery/1.9/jquery.min.js"></script>
+
+<!--Line chart Reference-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<!--Pie Chart Reference-->
+<link href="~/Content/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+<!--Script for get DateTime real-->
+
+@*
+    <script>
+        $(document).ready(function () {
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: '@Url.Action("VisualizeProdusenVaksinResult", "../BPOM/Home")',
+                    success: function (result) {
+                        google.charts.load('current', {
+                            'packages': ['corechart']
+                        });
+                        google.charts.setOnLoadCallback(function () {
+                            drawChart(result);
+                        });
+                    }
+                });
+            });
+
+            function drawChart(result) {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Produsen');
+                data.addColumn('number', 'Jumlah Produksi');
+                var dataArray = [];
+
+                $.each(result, function (i, obj) {
+                    dataArray.push([obj.Name, obj.ProdukCount]);
+                });
+                data.addRows(dataArray);
+
+                var columnChartOptions = {
+                    title: "Grafik Produksi Vaksin",
+                    width: 1000,
+                    height: 400,
+                    bar: { groupWidth: "20%" },
+                };
+
+                var columnChart = new google.visualization.LineChart(document
+                    .getElementById('linechart_div'));
+
+
+                columnChart.draw(data, columnChartOptions);
+        }
+    </script>
+*@
+
+
+<script>
+    $(document).ready(function () {
+        $.getJSON("../BPOM/Home/VisualizeArrivalVaccine", function (data) {
+            var RSNames = []
+            var Vaccine_Count = []
+
+            for (var i = 0; i < data.length; i++) {
+                RSNames.push(data[i].RS_Name);
+                Vaccine_Count.push(data[i].Vaccine_count)
+            }
+
+            Highcharts.chart('linechart_div', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Arrival Vaccine Tracking in Hospital'
+                },
+                subtitle: {
+                    text: 'Source: BPOM_Service'
+                },
+                xAxis: {
+                    categories: RSNames
+                },
+                yAxis: {
+                    title: {
+                        text: 'Jumlah Vaksin'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    name: 'Arrival Vaccine',
+                    data: Vaccine_Count
+                }]
+            });
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        waktu();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: '@Url.Action("VisualizeProdusenVaksinResult", "../BPOM/Home")',
+                    success: function (result) {
+                        google.charts.load('current', {
+                            'packages': ['corechart']
+                        });
+                        google.charts.setOnLoadCallback(function () {
+                            drawChart(result);
+                        });
+                    }
+                });
+            });
+
+            function drawChart(result) {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Produsen');
+                data.addColumn('number', 'Jumlah Produksi');
+                var dataArray = [];
+
+                $.each(result, function (i, obj) {
+                    dataArray.push([obj.Name, obj.ProdukCount]);
+                });
+                data.addRows(dataArray);
+
+                var columnChartOptions = {
+                    title: "Grafik Produksi Vaksin",
+                    width: 1000,
+                    height: 400,
+                    bar: { groupWidth: "20%" },
+                };
+
+
+
+                var columnPieChart = new google.visualization.PieChart(document
+                    .getElementById('piechart_div'));
+
+
+                columnPieChart.draw(data, columnChartOptions);
+    }
+
+
+    // Real Current Datetime
+    function waktu() {
+        var sekarang = new Date();
+        var arrDay = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        var arrMonth = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli','Agustus','September','Oktober','November','Desember'];
+        var hari = sekarang.getDay();
+        var tanggal = sekarang.getDate();
+        var bulan = sekarang.getMonth();
+        var tahun = sekarang.getFullYear();
+        var detik = sekarang.getSeconds();
+        if (detik < 10) detik = '0' + detik;
+        var menit = sekarang.getMinutes();
+        if (menit < 10) menit = '0' + menit;
+        var jam = sekarang.getHours();
+        if (jam < 10) jam = '0' + jam;
+        document.getElementById("waktu").innerHTML = arrDay[hari] + ', ' + tanggal + ' ' + arrMonth[bulan] + ' ' + tahun + ' - ' + jam + ':' + menit + ':' + detik;
+        setTimeout('waktu()', 1000);
+    }
+</script>
+
+
+<div class="container-fluid">
+    <!-- Content Header (Page header) -->
+    <h4 style="font-weight:bold">Cari Vaksin</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="section-table">
+                <form method="POST">
+                    <div style="margin:10px 0 20px 0;">
+                        Cari Berdasarkan &nbsp; <select name="kat_input" id="kat_input" class="text" style="width: 180px;">
+                            <option value="0">NOMOR REGISTRASI</option>
+                            <option value="1">NAMA Produsen</option>
+                        </select>&nbsp; Kata Kunci &nbsp; <input type="text" class="text" name="value_input" id="value_input" style="width: 200px;">
+                        <button type="submit">Cari</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div onload="DiplayClock(); setInterval('waktu()', 1000);" style="text-align:right;margin:0" class="col-md-6">
+        
+            <!--Date Time-->
+            <span id="waktu">&nbsp;</span>
+        
+        </div>
+    </div>
+
+    @if (Session["InSearch"] != null)
+    {
+        <div class="wrapper">
+
+            <table id="example" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Create At
+                        </th>
+                        <th>
+                            No Registrasi
+                        </th>
+                        <th>
+                            Nama Produsen
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.bpom_vaksins == null)
+                    {
+                        <tr class="table-info">
+                            <td colspan="5" class="text-center">
+                                No Data Available
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.bpom_vaksins)
+                        {
+                            string clTr;
+                            if (item.status.Equals("Invalid"))
+                            {
+                                clTr = "table-danger";
+                            }
+                            else
+                            {
+                                clTr = "";
+                            }
+                            <tr class="@clTr">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.create_at)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.no_registrasi)
+                                </td>
+                                <td>
+                                    @Model.produsens.FirstOrDefault(X => X.id == item.id_produsen).Nama.ToString()
+                                </td>
+                                <td>
+                                    @if (item.status.Equals("Valid"))
+                                    {
+                                        <span class="badge badge-success">@item.status</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-danger">@item.status</span>
+                                    }
+                                </td>
+                                <td )>
+                                    @using (Html.BeginForm("index", "BPOMVaksin"))
+                                    {
+                                        <input type="hidden" name="no_registrasi" value="@Html.DisplayFor(modelItem => item.no_registrasi)" />
+                                        <input type="hidden" name="create_at" value="@Html.DisplayFor(modelItem => item.create_at)" />
+                                        if (item.status.Equals("Invalid"))
+                                        {
+                                            <button title="Lihat Detail" type="button" class="btn btn-sm btn-primary ml-4" data-toggle="modal" data-target="#exampleModal-@item.no_registrasi">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button title="Lihat Detail" type="button" class="btn btn-sm btn-primary ml-4" data-toggle="modal" data-target="#exampleModal-@item.no_registrasi">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        }
+
+                                    }
+                                </td>
+                            </tr>
+
+
+                            <div class="modal fade" id="exampleModal-@item.no_registrasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Detail Vaksin</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="pt-2 mr-2">
+                                                <div class="card ml-4" style="width: 25rem;">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"> <label for="@item.create_at">Dibuat Pada : </label> @item.create_at</li>
+                                                        <li class="list-group-item"> <label for="@item.no_registrasi">No Registrasi : </label> @item.no_registrasi</li>
+                                                        <li class="list-group-item"><label for="@item.id_produsen">Nama Produsen : </label> @Model.produsens.FirstOrDefault(X => X.id == item.id_produsen).Nama.ToString()</li>
+                                                        <li class="list-group-item"><label for="@item.id_produsen">Kemasan : </label> @item.kemasan</li>
+                                                        <li class="list-group-item"><label for="@item.id_produsen">Jumlah : </label> @item.jumlah</li>
+                                                        @if (item.status.Equals("Invalid"))
+                                                        {
+                                                            <li class="list-group-item"><label for="@item.status">Status : </label> <span class="badge badge-danger"> @item.status </span> </li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li class="list-group-item"><label for="@item.status">Status : </label> <span class="badge badge-success"> @item.status </span> </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="linechart_div"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="piechart_div"></div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div id="linechart_div"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="piechart_div"></div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+

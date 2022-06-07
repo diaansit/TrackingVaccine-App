@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TrackingVaksinService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TrackingVaksinService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Akun">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="create_at" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="role" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Akun" nillable="true" type="tns:Akun" />
+  <xs:complexType name="BPOM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Divisi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nama" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="create_at" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_BPOM" type="xs:int" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BPOM" nillable="true" type="tns:BPOM" />
+  <xs:complexType name="ArrayOfBPOM_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BPOM_Vaksin" nillable="true" type="tns:BPOM_Vaksin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBPOM_Vaksin" nillable="true" type="tns:ArrayOfBPOM_Vaksin" />
+  <xs:complexType name="BPOM_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="create_at" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_produsen" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="jumlah" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="kemasan" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="no_registrasi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BPOM_Vaksin" nillable="true" type="tns:BPOM_Vaksin" />
+  <xs:complexType name="ArrayOfProdusen_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Produsen_Vaksin" nillable="true" type="tns:Produsen_Vaksin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProdusen_Vaksin" nillable="true" type="tns:ArrayOfProdusen_Vaksin" />
+  <xs:complexType name="Produsen_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="create_at" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_produsen" type="xs:int" />
+      <xs:element minOccurs="0" name="jumlah" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="kemasan" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="no_registrasi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Produsen_Vaksin" nillable="true" type="tns:Produsen_Vaksin" />
+  <xs:complexType name="Produsen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alamat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nama" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No_Ijin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Produsen" nillable="true" type="tns:Produsen" />
+  <xs:complexType name="ArrayOfProdusen">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Produsen" nillable="true" type="tns:Produsen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProdusen" nillable="true" type="tns:ArrayOfProdusen" />
+  <xs:complexType name="RumahSakit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alamat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nama" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No_Ijin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RumahSakit" nillable="true" type="tns:RumahSakit" />
+  <xs:complexType name="ArrayOfRS_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RS_Vaksin" nillable="true" type="tns:RS_Vaksin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRS_Vaksin" nillable="true" type="tns:ArrayOfRS_Vaksin" />
+  <xs:complexType name="RS_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="create_at" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_produsen" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="id_rumahSakit" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="isReported" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="jumlah" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="kemasan" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="kode_ref" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="no_registrasi" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RS_Vaksin" nillable="true" type="tns:RS_Vaksin" />
+  <xs:complexType name="ArrayOfRumahSakit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RumahSakit" nillable="true" type="tns:RumahSakit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRumahSakit" nillable="true" type="tns:ArrayOfRumahSakit" />
+  <xs:complexType name="ArrayOfBPOM_Log_Kedatangan_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BPOM_Log_Kedatangan_Vaksin" nillable="true" type="tns:BPOM_Log_Kedatangan_Vaksin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBPOM_Log_Kedatangan_Vaksin" nillable="true" type="tns:ArrayOfBPOM_Log_Kedatangan_Vaksin" />
+  <xs:complexType name="BPOM_Log_Kedatangan_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="create_at" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="id_RumahSakit" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="id_produsen" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="no_registrasi" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BPOM_Log_Kedatangan_Vaksin" nillable="true" type="tns:BPOM_Log_Kedatangan_Vaksin" />
+  <xs:complexType name="ArrayOfBPOM_Log_Penggunaan_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BPOM_Log_Penggunaan_Vaksin" nillable="true" type="tns:BPOM_Log_Penggunaan_Vaksin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBPOM_Log_Penggunaan_Vaksin" nillable="true" type="tns:ArrayOfBPOM_Log_Penggunaan_Vaksin" />
+  <xs:complexType name="BPOM_Log_Penggunaan_Vaksin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NIK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No_RekMedis" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="create_at" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="id_RumahSakit" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="no_registrasi" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BPOM_Log_Penggunaan_Vaksin" nillable="true" type="tns:BPOM_Log_Penggunaan_Vaksin" />
+  <xs:complexType name="Masyarakat">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alamat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NIK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nama" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TglLahir" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Masyarakat" nillable="true" type="tns:Masyarakat" />
+  <xs:complexType name="ArrayOfMasyarakat">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Masyarakat" nillable="true" type="tns:Masyarakat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMasyarakat" nillable="true" type="tns:ArrayOfMasyarakat" />
+  <xs:complexType name="ArrayOfPasien">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Pasien" nillable="true" type="tns:Pasien" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPasien" nillable="true" type="tns:ArrayOfPasien" />
+  <xs:complexType name="Pasien">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NIK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="No_RekMedis" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="create_at" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_RumahSakit" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="isReported" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="no_registrasi" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Pasien" nillable="true" type="tns:Pasien" />
+</xs:schema>

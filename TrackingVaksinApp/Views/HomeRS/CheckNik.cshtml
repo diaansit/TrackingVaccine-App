@@ -1,0 +1,46 @@
+﻿@model TrackingVaksinApp.Models.ListViewModel
+
+@{
+    ViewBag.Title = "CheckNik";
+    Layout = "~/Views/Shared/_RumahSakitLayout.cshtml";
+}
+
+<div class="pt-2 mr-2">
+    <form class="form-inline" action="~/RS/HomeRS/CheckNik" method="POST">
+        <div class="form-group mx-sm-4 mb-2">
+            <label for="no_registrasi" class="sr-only">No Registrasi</label>
+            <input type="text" name="NIK" class="form-control" id="NIK" placeholder="Cari NIK">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 ml-3">Check</button>
+    </form>
+</div>
+
+
+<div class="mt-md-4">
+    <h4 class="mb-3">Data Pemerintah</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+            @if (Model.singlemasyarakat != null)
+            {
+                DateTime tglLahir = (DateTime)@Model.singlemasyarakat.TglLahir;
+                string JenisKelamin = @Model.singlemasyarakat.JK.Equals("L") ? "Laki-Laki" : "Wanita";
+
+                    <div class="card" style="width: 25rem;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> <label for="@Model.singlemasyarakat.NIK">NIK : </label> @Model.singlemasyarakat.NIK</li>
+                            <li class="list-group-item"><label for="@Model.singlemasyarakat.Nama">Nama : </label> @Model.singlemasyarakat.Nama</li>
+                            <li class="list-group-item"><label for="@Model.singlemasyarakat.JK">Jenis Kelamin : </label>  @JenisKelamin </li>
+                            <li class="list-group-item"><label for="@Model.singlemasyarakat.TglLahir">Tanggal Lahir : </label>  @tglLahir.ToString("dd MMMM yyyy")</li>
+                        </ul>
+                    </div>
+            }
+            else
+            {
+               <div class="alert alert-warning">Masyarakat dengan NIK : @ViewBag.tempNik Tidak Tersedia</div>
+            }
+</div>
+<p>
+    @Html.RouteLink("Back to Home", "RS", new { action = "Index" }, new { @class = "btn btn-sm btn-primary" })
+</p>
+

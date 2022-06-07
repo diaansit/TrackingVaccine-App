@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_ProdusenLayout.cshtml";
+}
+
+<h2>Create new Product Vaksin</h2>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-10">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Form Tambah Vaksin</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="post" id="quickForm">
+                        <div class="card-body">
+                            <label>No Registrasi:</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar-check"></i></span>
+                                </div>
+                                <input type="text" name="no_registrasi" required autofocus autocomplete="ON" class="form-control" placeholder="No Registrasi Vaksin">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar-check"></i></span>
+                                </div>
+                                <input type="text" name="kemasan" required autofocus autocomplete="ON" class="form-control" placeholder="Jenis Kemasan">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar-check"></i></span>
+                                </div>
+                                <input type="text" name="jumlah" required autofocus autocomplete="ON" class="form-control" placeholder="Jumlah Vaksin">
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+

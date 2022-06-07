@@ -1,0 +1,167 @@
+﻿
+@{
+    Layout = null;
+}
+
+<script src="https://code.jquery.com/jquery-1.10.1.min.js" integrity="sha256-SDf34fFWX/ZnUozXXEH0AeB+Ip3hvRsjLwp6QNTEb3k=" crossorigin="anonymous"></script>
+
+<script>
+    function Validate() {
+        var Nama = document.getElementById("Nama").value;
+        var Alamat = document.getElementById("Alamat").value;
+        var No_Ijin = document.getElementById("No_Ijin").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if (Nama === "" || Alamat === "" || No_Ijin === "" || username === "" || password === "") {
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.btn').attr('disabled', true);
+
+        $('#Nama').keyup(function () {
+            if (Validate()) {
+                $('.btn').attr('disabled', false);
+            }
+            else {
+                $('.btn').attr('disabled', true);
+            }
+        })
+
+        $('#Alamat').keyup(function () {
+            if (Validate()) {
+                $('.btn').attr('disabled', false);
+            }
+            else {
+                $('.btn').attr('disabled', true);
+            }
+        })
+
+        $('#No_Ijin').keyup(function () {
+            if (Validate()) {
+                $('.btn').attr('disabled', false);
+            }
+            else {
+                $('.btn').attr('disabled', true);
+            }
+        })
+
+        $('#username').keyup(function () {
+            if (Validate()) {
+                $('.btn').attr('disabled', false);
+            }
+            else {
+                $('.btn').attr('disabled', true);
+            }
+        })
+
+        $('#password').keyup(function () {
+            if (Validate()) {
+                $('.btn').attr('disabled', false);
+            }
+            else {
+                $('.btn').attr('disabled', true);
+            }
+        })
+
+    });
+</script>
+
+<style>
+    #container-flow {
+        overflow-y: auto;
+    }
+
+    input[disabled].btn {
+        cursor: not-allowed;
+        background-image: linear-gradient(to right, red, red, red);
+    }
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tracking Vaksin - Login Form</title>
+    <link href="~/Content/Login-page/css/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.4/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <img class="wave" src="~/Content/Login-page/img/wave.png">
+    <div class="container" id="container-flow">
+        <div class="img">
+            <img src="~/Content/Login-page/img/bg.svg">
+        </div>
+        <div class="login-content">
+            <form method="post" action="~/Auth/User/RSRegister" onsubmit="return Validate()">
+                <img src="~/Content/Login-page/img/avatar.svg">
+                <h2 class="title">Welcome</h2>
+                <span id="NamaErr" style="color:red"></span>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-address-book"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Nama Rumah Sakit</h5>
+                        <input type="text" name="Nama" id="Nama" class="input">
+                    </div>
+                </div>
+                <span id="AddErr" style="color:red"></span>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-address-card"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Alamat Rumah Sakit</h5>
+                        <input type="text" name="Alamat" id="Alamat" class="input">
+                    </div>
+                </div>
+                <span id="NoIjinErr" style="color:red"></span>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-sort-numeric-up-alt"></i>
+                    </div>
+                    <div class="div">
+                        <h5>No Ijin</h5>
+                        <input type="text" name="No_Ijin" id="No_Ijin" class="input">
+                    </div>
+                </div>
+                <span id="usernameErr" style="color:red"></span>
+                <span id="UniqueUsername" class="mt-2" style="color:red"> @ViewBag.usernameErr </span>
+                @if (ViewBag.usernameErr == null)
+                {
+                    ViewData.Clear();
+                }
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Username</h5>
+                        <input type="text" name="username" id="username" class="input">
+                    </div>
+                </div>
+                <span id="PassErr" style="color:red"></span>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password</h5>
+                        <input type="password" name="password" id="password" class="input">
+                    </div>
+                </div>
+                <a href="~/Auth/User/Login">Have Account?</a>
+                <input type="submit" class="btn" id="btn-send" value="Register">
+            </form>
+        </div>
+    </div>
+
+    <script src="~/Content/Login-page/js/main.js"></script>
